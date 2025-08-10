@@ -141,8 +141,8 @@ proyecto-datepicker-sqa/
    bash
 
    ```bash
-   git clone https://github.com/zagui-master/Soluci-n-reto-t-cnico-SQA-.git
-   cd Solucion_Reto_Tecnnico_SQA
+   git clone https://github.com/zagui-master/Reto_Tecnico_SQA.git
+   cd Reto_Tecnico_SQA
    ```
 2. **Verificar instalación de Gradle**
 
@@ -196,7 +196,6 @@ bash
 # Ejecutar caso específico
 gradle test -Dcucumber.filter.tags="@CP-01"
 ```
-
 
 ### Generar solo el reporte
 
