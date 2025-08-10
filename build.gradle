@@ -1,51 +1,34 @@
-apply plugin: 'java-library'
-apply plugin: 'net.serenity-bdd.aggregator'
+plugins {
+    id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '3.9.8'
+}
+
+defaultTasks 'clean', 'test', 'aggregate'
 
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    jcenter()
 }
-
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
-    }
-}
-
 
 dependencies {
-
-    implementation 'net.serenity-bdd:serenity-junit:2.0.80'
-    implementation 'net.serenity-bdd:serenity-cucumber:1.9.45'
-    implementation 'net.serenity-bdd:serenity-core:2.0.80'
-    implementation 'org.slf4j:slf4j-simple:1.7.7'
-    implementation 'com.google.guava:guava:23.0'
-    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
-    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-
-
-
-
+    implementation 'net.serenity-bdd:serenity-core:3.9.8'
+    implementation 'net.serenity-bdd:serenity-junit:3.9.8'
+    implementation 'net.serenity-bdd:serenity-cucumber:3.9.8'
+    implementation 'io.cucumber:cucumber-java:7.14.0'
+    implementation 'io.cucumber:cucumber-junit:7.14.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
 }
-
 
 test {
-
-    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
 }
 
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+serenity {
+    testRoot = "runners"
+    requirementsBaseDir = "src/test/resources/features"
+    reports = ["single-page-html"]
 }
-
 
 gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)
