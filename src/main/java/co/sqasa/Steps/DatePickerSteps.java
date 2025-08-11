@@ -12,40 +12,40 @@ public class DatePickerSteps {
     @Page
     DatePickerPageObject datePickerPageObject;
 
-    @Step
+    @Step("Abre la página web")
     public void openPage() {
         datePickerPageObject.openPage();
     }
 
 
-    @Step
+    @Step("Selecciona él date picker")
     public void clickOnInputDataPicker() {
 
         datePickerPageObject.clickOnInputDataPicker();
     }
 
-    @Step
+    @Step("Selecciona un día del calendario")
     public void chooseDay(String day) {
         datePickerPageObject.chooseDay(day);
     }
 
-    @Step
+    @Step("Navega al mes siguiente")
     public void goToNextMonth() {
         datePickerPageObject.goToNexMonth();
     }
 
-    @Step
+    @Step("Ingresa una fecha manualmente al date picker")
     public void typeOnInputDatePicker(String value) {
         datePickerPageObject.typeOnInputDatePicker(value);
     }
 
-    @Step
+    @Step("Válida fecha en él date picker")
     public void validateDateOnDatePicker(String date) {
         String actualValue = datePickerPageObject.getDateFromDataPicker();
         assertThat(actualValue, containsString(date));
     }
 
-    @Step
+    @Step("válida que él date picker esta vacío")
     public void validateDatePickerIsClear() {
         String actualValue = datePickerPageObject.getDateFromDataPicker();
         assertThat(actualValue, is(""));
